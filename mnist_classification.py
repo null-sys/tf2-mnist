@@ -42,3 +42,16 @@ test_data = test_data.batch(test_size)
 
 validation_inputs , validation_targets = next(iter(validation_data))
 
+# MOdel
+
+input_size = 784
+output_size = 10
+hidden_layer_size = 50
+
+model = tf.keras.Sequential([
+        tf.keras.layers.Flatten(input_shape=(28,28,1)),
+        tf.keras.layers.Dense(hidden_layer_size,activation='relu'),
+        tf.keras.layers.Dense(hidden_layer_size,activation='relu'),
+        tf.keras.layers.Dense(output_size,activation='softmax'),
+        ])
+
