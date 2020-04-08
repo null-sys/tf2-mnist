@@ -36,7 +36,7 @@ train_data = suffled_train_and_validation_data.skip(validation_size)
 
 BATCH_SIZE = 100
 
-train_data = train_data.batch(BATCH_SIZE)
+train_data= train_data.batch(BATCH_SIZE)
 validation_data = validation_data.batch(validation_size)
 test_data = test_data.batch(test_size)
 
@@ -55,3 +55,17 @@ model = tf.keras.Sequential([
         tf.keras.layers.Dense(output_size,activation='softmax'),
         ])
 
+
+# optimizer and loss
+    
+model.compile(optimizer="adam",loss="sparse_categorical_crossentropy",matrics =['accuracy'])
+
+# Training
+
+NUM_EPOCHS = 5
+
+model.fit(train_data,
+    batch_size=BATCH_SIZE,
+    epochs=NUM_EPOCHS,
+    validation_data=(validation_inputs, validation_targets),
+    validation_steps=10)
